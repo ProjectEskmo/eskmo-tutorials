@@ -7,7 +7,7 @@
         <td width="120px"><img src="assets/eskmo-logo.jpg" height="100px" width="100px" alt="Eskmo Logo"></td>
         <td valign="top">
             <h3>Eskmo 教學</h3>
-            <p>本系列教學指導您學會 Eskmo 的基本操作，並打造一個基本交易策略，最終做出自己專屬的交易程式。</p>
+            <p>本系列教學指導您學會基本操作，並打造基本交易策略，最終做出自己專屬的交易程式。</p>
         </td>
     </tr>
 </table>

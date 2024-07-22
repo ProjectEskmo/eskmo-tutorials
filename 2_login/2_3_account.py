@@ -1,17 +1,16 @@
-from starter import *
 from eskmo import api
-from eskmo import Logger, User, Account, StockAccount
+from eskmo import User, Account, StockAccount
+
+api.logger.show = True
 
 @api.start
 def main():
-    Logger.show = True
     user: User = api.login(userId="A123456789", password="*************", tag="me")
 
     # 2.3.1. 帳戶列表 (含證券, 期貨帳戶)
     accounts: dict[str, Account] = user.accounts
     print(accounts)
 
-    user.accounts["egerger"]
 
     # 2.3.2. 主要帳戶 (預設證券帳戶第一戶)
     account: Account = user.account
@@ -26,7 +25,7 @@ def main():
     print(accountIds)
 
     # 2.3.5. 更新帳戶名稱
-    account_info = ("91829808465", "主帳戶")
+    account_info = ("1234567890", "主帳戶")
     user.update_account_name(*account_info)
     account: StockAccount = user.accounts["主帳戶"]
 

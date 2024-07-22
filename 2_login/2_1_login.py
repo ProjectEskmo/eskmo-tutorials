@@ -1,15 +1,29 @@
-from starter import *
+import csv
+from datetime import datetime
 from eskmo import api
-from eskmo import User, Logger
+from eskmo import User
 from eskmo import LoginStartResult, LoginSuccessResult, APIExecuteErrorResult, LoginFailResult, LoginProgressNotifyResult
+
+starttime = 0
+
+def append_number_to_csv(number):
+    with open("login_speed_microsecs.csv", mode='a', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow([number])
 
 @api.event.user.login_start
 def onLoginStart(data: LoginStartResult):
+    global starttime
+    starttime = datetime.now()
     print(data)
     # LoginStartResult(event='LoginStart', type='MultiLogin', connection=2)    
 
 @api.event.user.login_success
 def onLoginSuccess(data: LoginSuccessResult):
+    global starttime
+    t = (datetime.now() - starttime).seconds
+    print(f"[ LOGIN DURATION ] {t}s")
+    append_number_to_csv(t)
     print(data)      
     # LoginSuccessResult(event='LoginSuccess', api='SKCOM', userId='A123456789') 
 
@@ -30,7 +44,7 @@ def onLoginProgressNotify(data: LoginProgressNotifyResult):
 
 @api.start
 def main():
-    Logger.show = True
+    api.logger.show = True
     
     # 2.1.1 登入
     tag = "爸爸"

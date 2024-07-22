@@ -1,11 +1,18 @@
-from starter import *
+import csv
+from datetime import datetime
 from eskmo import api
-from eskmo import Logger, Stock
+from eskmo import Stock
 from eskmo import SubscribeFailResult, SubscribeStartResult, SubscribeSuccessResult
+
+api.logger.enable()
+
+def append_number_to_csv(number):
+    with open("quote_speed_microsecs.csv", mode='a', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow([number])
 
 @api.start
 def main():
-    Logger.show = True
     api.login(userId="A123456789", password="*************", tag="王睿麒")
 
     # 4.1.1. 透過 stock 訂閱
@@ -31,6 +38,7 @@ def onSubscribeSuccess(data: SubscribeSuccessResult):
 # 4.1.2. 透過裝飾器獲得事件通知
 @api.event.quote.bidask_changed
 def onBidAskChanged(data):
+    append_number_to_csv(datetime.now().timestamp())
     print(f"[ALL] Quote:: {data}")
 
 @api.event.quote.price_changed

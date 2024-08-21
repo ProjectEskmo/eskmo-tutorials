@@ -41,10 +41,10 @@ def onLoginProgressNotify(data: LoginProgressNotifyResult):
 # def onAPIExecuteError(data: APIExecuteErrorResult):
 #     print(f"API execute error:: {data}")
 #     # APIExecuteErrorResult(event='SkcomExecFail', phase='AfterExec', function='SKCenterLib_Login', error_code=507, errors=['帳號或憑證錯誤'])
+api.logger.show = True
 
 @api.start
 def main():
-    api.logger.show = True
     
     # 2.1.1 登入
     tag = "爸爸"

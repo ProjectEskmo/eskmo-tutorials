@@ -1,11 +1,12 @@
 from starter import *
 from eskmo import api
-from eskmo import Logger, Stocks, Stock
+from eskmo import Stock
+
+api.logger.show = True
 
 @api.start
 def main():
-    Logger.show = True
-    api.login(userId="A123456789", password="*************", tag="me")
+    api.login(userId="A123456789", password="*************")
 
     stock: Stock = api.stocks["2330"]
     print(stock)

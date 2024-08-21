@@ -1,6 +1,6 @@
-from starter import *
 from eskmo import api
 from eskmo import Logger, Stock
+
 @api.start
 def main():
     Logger.show = True

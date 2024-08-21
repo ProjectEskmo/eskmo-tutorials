@@ -4,7 +4,7 @@ from eskmo import api
 from eskmo import Stock
 from eskmo import SubscribeFailResult, SubscribeStartResult, SubscribeSuccessResult
 
-api.logger.enable()
+api.logger.show = True
 
 def append_number_to_csv(number):
     with open("quote_speed_microsecs.csv", mode='a', newline='') as file:
